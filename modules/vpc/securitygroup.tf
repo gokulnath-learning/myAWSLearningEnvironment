@@ -4,15 +4,16 @@ resource "aws_security_group" "sg" {
     
     tags = merge(
         var.common_tags,
-        tomap({ Name = "${var.common_tags["Project"]}-${var.common_tags["Environment"]}-vpc-${var.vpc_parameters.vpc_name}-sg" })
+        tomap({ Name = "${var.common_tags["Project"]}-${var.common_tags["Environment"]}-vpc-${var.vpc_parameters.vpc_name}-sg" }),
+        tomap({is_public = "${var.vpc_parameters.is_public}" })
     )
 }
 
 resource "aws_security_group_rule" "sg_rule_egress" {
     security_group_id = aws_security_group.sg.id
-    protocol = "tcp"
-    from_port = -1
-    to_port = -1
+    protocol = "-1"
+    from_port = 0
+    to_port = 0
     type = "egress"
     cidr_blocks = [ "0.0.0.0/0" ]
 }

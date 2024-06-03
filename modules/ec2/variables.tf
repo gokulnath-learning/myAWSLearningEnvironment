@@ -1,8 +1,8 @@
 variable "ec2_parameters" {
 }
 
-variable "subnets" {
+variable "key_name" {
 }
 
-variable "sg" {
+variable "common_tags" {
 }

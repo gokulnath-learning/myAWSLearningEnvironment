@@ -9,4 +9,6 @@ module "ec2" {
     for_each = var.ec2_parameters
     source = "../modules/ec2"
     ec2_parameters = each.value
+    key_name = aws_key_pair.keypair.key_name
+    common_tags = var.common_tags
 }

@@ -6,6 +6,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
   tags = merge(
     var.common_tags,
-    tomap({ Name = "${var.common_tags["Project"]}-${var.common_tags["Environment"]}-vpc-${var.vpc_parameters.vpc_name}" })
+    tomap({ Name = "${var.common_tags["Project"]}-${var.common_tags["Environment"]}-vpc-${var.vpc_parameters.vpc_name}" }),
+    tomap({is_public = "${var.vpc_parameters.is_public}" })
   )
 }

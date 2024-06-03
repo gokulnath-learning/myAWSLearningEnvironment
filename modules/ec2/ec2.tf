@@ -1,18 +1,8 @@
-resource "aws_instance" "ec2" {
+# ec2
+resource "aws_instance" "ec2_instance" {
     count = var.ec2_parameters.instance_count
     ami = var.ec2_parameters.ami_id
     instance_type = var.ec2_parameters.instance_type
-    availability_zone = var.subnets[count.index].availability_zone
-    subnet_id = var.subnets[count.index].id
-    key_name = var.key_name
-
-    volume_tags = merge(
-        var.common_tags,
-        tomap({Name = "${var.common_tags["Project"]}-${var.common_tags["Environment"]}-${var.ec2_parameters.server_name}"})
-    )
-
-    tags = merge(
-        var.common_tags,
-        tomap({Name = "${var.common_tags["Project"]}-${var.common_tags["Environment"]}-${var.ec2_parameters.server_name}"})
-    )
+    security_groups = []
+    iam_instance_profile = "arn:aws:iam::654654413093:instance-profile/ec2-role"
 }

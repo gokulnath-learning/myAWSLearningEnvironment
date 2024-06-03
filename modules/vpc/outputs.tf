@@ -1,16 +1,11 @@
-#outputs
-output "vpc_id" {
-  value = aws_vpc.vpc.id
+output "vpc" {
+  value = aws_vpc.vpc
 }
 
-output "public_subnets" {
-  value = aws_subnet.public_subnets
+output "subnets" {
+  value = aws_subnet.subnets
 }
 
-output "private_subnets" {
-  value = aws_subnet.private_subnets
-}
-
-output "igw" {
-  value = aws_internet_gateway.igw.id
+output "sg" {
+  value = aws_security_group.sg
 }

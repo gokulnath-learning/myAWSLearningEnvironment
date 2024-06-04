@@ -30,3 +30,18 @@ ec2_parameters = {
     is_public                  = true
   }
 }
+
+db_parameters = {
+    mysqldb = {
+        db_identifier = "mysqldb"
+        db_instance_class = "db.t3.micro"
+        db_engine = "mysql"
+        db_engine_version = "8.0"
+        db_name = "wordpress"
+        db_username = "sqladmin"
+        db_subnet_group_name = "mysql_db_suben"
+        db_password_ssm_parameter = "db_user_password"
+        db_storage_type = "gp2"
+        db_storage_size = 20
+    }
+}

@@ -8,9 +8,13 @@ resource "aws_instance" "ec2_instance" {
     key_name = var.key_name
     iam_instance_profile = "ec2-role"
 
+    lifecycle {
+      ignore_changes = [ security_groups ]
+    }
+
     tags = merge(
         var.common_tags,
-        tomap({ Name = "${var.common_tags["Project"]}-${var.common_tags["Environment"]}-vpc-${var.ec2_parameters.server_name}" }),
+        tomap({ Name = "${var.common_tags["Project"]}-${var.common_tags["Environment"]}-${var.ec2_parameters.server_name}" }),
         tomap({is_public = "${var.ec2_parameters.is_public}" })
     )
 }

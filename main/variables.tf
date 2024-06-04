@@ -18,3 +18,7 @@ variable "key_name" {
 # ec2
 variable "ec2_parameters" {
 }
+
+# db
+variable "db_parameters" {
+}

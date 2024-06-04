@@ -12,3 +12,10 @@ module "ec2" {
     key_name = aws_key_pair.keypair.key_name
     common_tags = var.common_tags
 }
+
+module "db" {
+    for_each = var.db_parameters
+    source = "../modules/rds"
+    db_parameters = each.value
+    common_tags = var.common_tags
+}
